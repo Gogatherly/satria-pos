@@ -2,7 +2,7 @@ import './bootstrap';
 import {createInertiaApp} from "@inertiajs/react";
 import {ConfigProvider} from "antd";
 import {renderToString} from "react-dom/server";
-import {theme} from "./theme";
+import {theme, themeCssVariables} from "./theme";
 
 export default function render(page) {
     return createInertiaApp({
@@ -17,9 +17,12 @@ export default function render(page) {
         },
         setup({App, props}) {
             return (
-                <ConfigProvider theme={theme}>
-                    <App {...props} />
-                </ConfigProvider>
+                <>
+                    <style id="app-theme-vars">{themeCssVariables}</style>
+                    <ConfigProvider theme={theme}>
+                        <App {...props} />
+                    </ConfigProvider>
+                </>
             );
         },
     });

@@ -2,7 +2,7 @@ import './bootstrap';
 import {createInertiaApp} from "@inertiajs/react";
 import {ConfigProvider} from "antd";
 import {createRoot} from "react-dom/client";
-import {theme} from "./theme";
+import {theme, themeCssVariables} from "./theme";
 
 createInertiaApp({
     resolve: name => {
@@ -14,9 +14,12 @@ createInertiaApp({
     },
     setup({ el, App, props }) {
         createRoot(el).render(
-            <ConfigProvider theme={theme}>
-                <App {...props} />
-            </ConfigProvider>
+            <>
+                <style id="app-theme-vars">{themeCssVariables}</style>
+                <ConfigProvider theme={theme}>
+                    <App {...props} />
+                </ConfigProvider>
+            </>
         );
     },
 })

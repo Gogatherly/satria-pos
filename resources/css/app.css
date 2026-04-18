@@ -4,8 +4,45 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+@source '../**/*.jsx';
+@source '../**/*.ts';
+@source '../**/*.tsx';
 
-@theme {
+@theme inline {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-brand: var(--app-color-brand);
+    --color-brand-hover: var(--app-color-brand-hover);
+    --color-brand-active: var(--app-color-brand-active);
+    --color-brand-bg: var(--app-color-brand-bg);
+    --color-brand-border: var(--app-color-brand-border);
+    --color-success: var(--app-color-success);
+    --color-warning: var(--app-color-warning);
+    --color-danger: var(--app-color-danger);
+    --color-info: var(--app-color-info);
+    --color-canvas: var(--app-color-canvas);
+    --color-surface: var(--app-color-surface);
+    --color-elevated: var(--app-color-elevated);
+    --color-border: var(--app-color-border);
+    --color-border-muted: var(--app-color-border-muted);
+    --color-foreground: var(--app-color-foreground);
+    --color-muted: var(--app-color-muted);
+    --color-subtle: var(--app-color-subtle);
+    --color-disabled: var(--app-color-disabled);
+    --radius-app-xs: var(--app-radius-xs);
+    --radius-app-sm: var(--app-radius-sm);
+    --radius-app: var(--app-radius-md);
+    --radius-app-lg: var(--app-radius-lg);
+    --spacing-app-sm: var(--app-space-sm);
+    --spacing-app: var(--app-space-md);
+    --spacing-app-lg: var(--app-space-lg);
+    --shadow-app-sm: var(--app-shadow-sm);
+    --shadow-app-lg: var(--app-shadow-lg);
+}
+
+html,
+body,
+#app {
+    margin: 0;
+    min-height: 100%;
 }

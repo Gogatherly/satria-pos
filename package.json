@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@ant-design/cli": "^6.3.6",
+        "@ant-design/icons": "^6.1.1",
         "@inertiajs/react": "^3.0.3",
         "@inertiajs/vite": "^3.0.3",
         "@vitejs/plugin-react": "^6.0.1",

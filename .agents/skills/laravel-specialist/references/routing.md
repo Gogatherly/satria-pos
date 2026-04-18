@@ -305,7 +305,7 @@ return response()->json($post, 201);
 return response()->noContent();
 
 // Custom headers
-return response()->json($data)->header('X-Custom-Header', 'Value');
+return response()->json($data)->header('X-Custom-Navbar', 'Value');
 
 // Download
 return response()->download($pathToFile);
