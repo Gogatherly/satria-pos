@@ -1,5 +1,4 @@
 export const theme = {
-    algorithm: theme.darkAlgorithm,
     token: {
         colorPrimary: '#ff5c00',
         colorSuccess: '#00d084',
@@ -78,4 +77,4 @@ export const theme = {
         boxShadow: '0 4px 12px 0 rgba(0, 0, 0, 0.36)',
         boxShadowSecondary: '0 8px 24px 0 rgba(0, 0, 0, 0.48)'
     }
-}
+};

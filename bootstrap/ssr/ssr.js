@@ -1,0 +1,129 @@
+import { Fragment, jsx } from "react/jsx-runtime";
+import { createInertiaApp } from "@inertiajs/react";
+import { ConfigProvider } from "antd";
+import { renderToString } from "react-dom/server";
+//#region \0rolldown/runtime.js
+var __defProp = Object.defineProperty;
+var __exportAll = (all, no_symbols) => {
+	let target = {};
+	for (var name in all) __defProp(target, name, {
+		get: all[name],
+		enumerable: true
+	});
+	if (!no_symbols) __defProp(target, Symbol.toStringTag, { value: "Module" });
+	return target;
+};
+//#endregion
+//#region resources/js/Pages/Home.jsx
+var Home_exports = /* @__PURE__ */ __exportAll({ default: () => Home });
+function Home() {
+	return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx("p", { children: "Inin home" }) });
+}
+//#endregion
+//#region resources/js/bootstrap.js
+if (typeof window !== "undefined") import("axios").then(({ default: axios }) => {
+	window.axios = axios;
+	window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+});
+//#endregion
+//#region resources/js/theme.js
+var theme = { token: {
+	colorPrimary: "#ff5c00",
+	colorSuccess: "#00d084",
+	colorWarning: "#ff9f1a",
+	colorError: "#ff3d3d",
+	colorInfo: "#ff5c00",
+	colorTextBase: "#1a1a1a",
+	colorBgBase: "#0d0d0d",
+	colorPrimaryBg: "#1a0f0a",
+	colorPrimaryBgHover: "#331e14",
+	colorPrimaryBorder: "#ff5c00",
+	colorPrimaryBorderHover: "#ff7a2a",
+	colorPrimaryHover: "#ff7a2a",
+	colorPrimaryActive: "#cc4a00",
+	colorPrimaryText: "#ff5c00",
+	colorPrimaryTextHover: "#ff7a2a",
+	colorPrimaryTextActive: "#cc4a00",
+	colorSuccessBg: "#0a1a14",
+	colorSuccessBgHover: "#143329",
+	colorSuccessBorder: "#00d084",
+	colorSuccessBorderHover: "#33d99e",
+	colorSuccessHover: "#00a368",
+	colorSuccessActive: "#008055",
+	colorSuccessText: "#00d084",
+	colorSuccessTextHover: "#33d99e",
+	colorSuccessTextActive: "#008055",
+	colorWarningBg: "#1a120a",
+	colorWarningBgHover: "#332414",
+	colorWarningBorder: "#ff9f1a",
+	colorWarningBorderHover: "#ffb347",
+	colorWarningHover: "#e68a00",
+	colorWarningActive: "#b36b00",
+	colorWarningText: "#ff9f1a",
+	colorWarningTextHover: "#ffb347",
+	colorWarningTextActive: "#b36b00",
+	colorErrorBg: "#1a0a0a",
+	colorErrorBgHover: "#331414",
+	colorErrorBorder: "#ff3d3d",
+	colorErrorBorderHover: "#ff6a6a",
+	colorErrorHover: "#e62e2e",
+	colorErrorActive: "#b32424",
+	colorErrorText: "#ff3d3d",
+	colorErrorTextHover: "#ff6a6a",
+	colorErrorTextActive: "#b32424",
+	colorInfoBg: "#1a0f0a",
+	colorInfoBgHover: "#331e14",
+	colorInfoBorder: "#ff5c00",
+	colorInfoBorderHover: "#ff7a2a",
+	colorInfoHover: "#ff7a2a",
+	colorInfoActive: "#cc4a00",
+	colorInfoText: "#ff5c00",
+	colorInfoTextHover: "#ff7a2a",
+	colorInfoTextActive: "#cc4a00",
+	colorText: "rgba(255, 255, 255, 0.85)",
+	colorTextSecondary: "rgba(255, 255, 255, 0.65)",
+	colorTextTertiary: "rgba(255, 255, 255, 0.45)",
+	colorTextQuaternary: "rgba(255, 255, 255, 0.25)",
+	colorTextDisabled: "rgba(255, 255, 255, 0.25)",
+	colorBgContainer: "#121212",
+	colorBgElevated: "#1a1a1a",
+	colorBgLayout: "#0d0d0d",
+	colorBgSpotlight: "rgba(0, 0, 0, 0.85)",
+	colorBgMask: "rgba(0, 0, 0, 0.45)",
+	colorBorder: "#262626",
+	colorBorderSecondary: "#1a1a1a",
+	borderRadius: 4,
+	borderRadiusXS: 2,
+	borderRadiusSM: 3,
+	borderRadiusLG: 6,
+	padding: 16,
+	paddingSM: 12,
+	paddingLG: 24,
+	margin: 16,
+	marginSM: 12,
+	marginLG: 24,
+	boxShadow: "0 4px 12px 0 rgba(0, 0, 0, 0.36)",
+	boxShadowSecondary: "0 8px 24px 0 rgba(0, 0, 0, 0.48)"
+} };
+//#endregion
+//#region resources/js/ssr.jsx
+function render(page) {
+	return createInertiaApp({
+		page,
+		render: renderToString,
+		resolve: (name) => {
+			return (/* @__PURE__ */ Object.assign({ "./Pages/Home.jsx": Home_exports }))[`./Pages/${name}.jsx`]?.default;
+		},
+		progress: { color: "#ff5c00" },
+		setup({ App, props }) {
+			return /* @__PURE__ */ jsx(ConfigProvider, {
+				theme,
+				children: /* @__PURE__ */ jsx(App, { ...props })
+			});
+		}
+	});
+}
+//#endregion
+export { render as default };
+
+//# sourceMappingURL=ssr.js.map
