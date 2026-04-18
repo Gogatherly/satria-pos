@@ -15,9 +15,11 @@
         "vite": "^8.0.0"
     },
     "dependencies": {
+        "@ant-design/cli": "^6.3.6",
         "@inertiajs/react": "^3.0.3",
         "@inertiajs/vite": "^3.0.3",
         "@vitejs/plugin-react": "^6.0.1",
+        "antd": "^6.3.6",
         "react": "^19.2.5",
         "react-dom": "^19.2.5"
     }
