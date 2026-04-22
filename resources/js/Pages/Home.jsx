@@ -1,11 +1,11 @@
-import {LayoutAdmin} from "../Layouts/LayoutAdmin.jsx";
+import {LayoutSuperAdmin} from "../Layouts/LayoutSuperAdmin.jsx";
 
 export default function Home() {
   return (
       <>
-          <LayoutAdmin>
+          <LayoutSuperAdmin>
               hello ini admin
-          </LayoutAdmin>
+          </LayoutSuperAdmin>
       </>
   )
 }

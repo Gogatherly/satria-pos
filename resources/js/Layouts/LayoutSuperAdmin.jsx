@@ -5,7 +5,7 @@ import {Navbar} from "../Components/Navbar.jsx";
 import {ContentLayout} from "../Components/ContentLayout.jsx";
 import {HomeOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined} from "@ant-design/icons";
 
-export const LayoutAdmin = ({children}) => {
+export const LayoutSuperAdmin = ({children}) => {
     const [collapse, setCollapsed] = useState(false);
     const menuItems = [
         {
