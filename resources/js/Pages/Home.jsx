@@ -20,69 +20,75 @@ const {Header, Content, Footer} = Layout;
 const {Title, Paragraph, Text} = Typography;
 
 const metrics = [
-    {title: "Transaksi harian", value: 1280, suffix: "+"},
-    {title: "Stok terpantau", value: 3400, suffix: " SKU"},
-    {title: "Laporan aktif", value: 18, suffix: " modul"},
+    {title: "Transaksi diproses", value: 1280, suffix: "+ / hari"},
+    {title: "SKU terpantau", value: 3400, suffix: "+"},
+    {title: "Role operasional", value: 3, suffix: " akses"},
 ];
 
 const features = [
     {
         icon: <ShoppingCartOutlined/>,
-        title: "Kasir cepat",
-        description: "Alur penjualan dibuat ringkas untuk transaksi koperasi, toko, dan unit usaha.",
+        title: "Sales & POS",
+        description: "Proses transaksi, pembayaran, dan ringkasan penjualan dari satu alur yang cepat.",
     },
     {
         icon: <DatabaseOutlined/>,
-        title: "Inventori rapi",
-        description: "Produk, stok masuk, stok keluar, dan pergerakan barang terlihat dalam satu sistem.",
+        title: "Inventory control",
+        description: "Pantau produk, stok masuk, stok keluar, dan ketersediaan barang secara terpusat.",
     },
     {
         icon: <BarChartOutlined/>,
-        title: "Laporan jelas",
-        description: "Pantau penjualan, performa kasir, dan kondisi stok tanpa rekap manual berulang.",
+        title: "Executive reports",
+        description: "Baca performa kasir, margin, produk bergerak, dan tren penjualan tanpa rekap manual.",
     },
     {
         icon: <TeamOutlined/>,
-        title: "Role operasional",
+        title: "Role based access",
         description: "Akses super admin, kasir, dan admin gudang dipisah sesuai tanggung jawab kerja.",
     },
 ];
 
 const workflow = [
-    "Input produk dan stok awal",
-    "Kasir memproses transaksi",
-    "Gudang memantau pergerakan stok",
-    "Owner membaca laporan penjualan",
+    "Data produk dan stok dibuat sebagai sumber utama",
+    "Kasir memproses penjualan dari dashboard POS",
+    "Gudang memantau pergerakan dan ketersediaan stok",
+    "Owner membaca performa dari laporan real time",
 ];
 
 const roleHighlights = [
     {
         icon: <SafetyCertificateOutlined/>,
         role: "Super Admin",
-        title: "Kontrol penuh untuk pemilik usaha",
-        items: ["Pantau penjualan", "Kelola user", "Baca performa toko"],
+        title: "Kontrol strategis untuk owner dan manajemen",
+        items: ["Pantau revenue", "Kelola akses user", "Analisis performa cabang"],
     },
     {
         icon: <ShoppingCartOutlined/>,
         role: "Kasir",
-        title: "Transaksi cepat di meja penjualan",
-        items: ["Input pesanan", "Hitung pembayaran", "Cetak ringkasan"],
+        title: "Transaksi cepat untuk meja penjualan",
+        items: ["Input pesanan", "Hitung pembayaran", "Rekap shift harian"],
     },
     {
         icon: <DatabaseOutlined/>,
         role: "Admin Gudang",
-        title: "Stok masuk dan keluar lebih mudah dilacak",
-        items: ["Kelola produk", "Catat stok", "Pantau ketersediaan"],
+        title: "Kontrol stok untuk gudang dan operasional",
+        items: ["Kelola produk", "Catat stok masuk", "Pantau ketersediaan"],
     },
 ];
 
 const modules = [
-    {icon: <ShoppingCartOutlined/>, label: "Transaksi kasir"},
-    {icon: <DatabaseOutlined/>, label: "Produk dan stok"},
-    {icon: <BarChartOutlined/>, label: "Laporan penjualan"},
-    {icon: <TeamOutlined/>, label: "Akses pengguna"},
-    {icon: <AuditOutlined/>, label: "Riwayat aktivitas"},
-    {icon: <CloudSyncOutlined/>, label: "Operasional terpusat"},
+    {icon: <DashboardOutlined/>, label: "Command dashboard", description: "Ringkasan performa harian"},
+    {icon: <ShoppingCartOutlined/>, label: "POS transaction", description: "Penjualan dan pembayaran"},
+    {icon: <DatabaseOutlined/>, label: "Inventory ledger", description: "Produk, SKU, dan stok"},
+    {icon: <BarChartOutlined/>, label: "Management report", description: "Penjualan dan tren operasional"},
+    {icon: <TeamOutlined/>, label: "User access", description: "Hak akses berdasarkan role"},
+    {icon: <AuditOutlined/>, label: "Activity audit", description: "Riwayat aktivitas sistem"},
+];
+
+const dashboardRows = [
+    {name: "Minyak Goreng 1L", stock: "428", status: "Ready"},
+    {name: "Beras Premium 5kg", stock: "186", status: "Restock"},
+    {name: "Gula Pasir 1kg", stock: "512", status: "Ready"},
 ];
 
 const footerGroups = [
@@ -115,23 +121,23 @@ const footerGroups = [
 export default function Home() {
     return (
         <>
-            <Head title="SatriaPOS - Point of Sale Koperasi"/>
+            <Head title="SatriaPOS ERP - Operasional Retail dan Koperasi"/>
 
             <Layout className="landing-page font-sans">
                 <Header className="landing-header flex items-center justify-between">
                     <a className="landing-brand" href="/" aria-label="SatriaPOS">
                         <img src="/images/logo-satria.png" alt="SatriaPOS"/>
-                        <span>Satria<span>POS</span></span>
+                        <span>Satria<span>POS ERP</span></span>
                     </a>
 
                     <nav className="landing-nav items-center" aria-label="Navigasi landing page">
-                        <a href="#fitur">Fitur</a>
                         <a href="#solusi">Solusi</a>
+                        <a href="#fitur">Fitur</a>
                         <a href="#modul">Modul</a>
                         <a href="#alur">Alur</a>
                     </nav>
 
-                    <Button href="/login" type="primary" icon={<LoginOutlined/>} className="landing-header-action">
+                    <Button href="/login" type="primary" icon={<LoginOutlined/>} className="landing-header-action shadow-app-sm">
                         Masuk
                     </Button>
                 </Header>
@@ -146,47 +152,73 @@ export default function Home() {
                                         <span/>
                                         <span/>
                                     </div>
-                                    <strong>SatriaPOS Live</strong>
+                                    <strong>ERP Command Center</strong>
                                 </div>
 
-                                <div className="landing-dashboard-grid">
-                                    <div className="landing-sale-panel">
-                                        <div className="landing-panel-heading">
-                                            <ShoppingCartOutlined/>
-                                            <span>Transaksi</span>
-                                        </div>
-                                        <strong>Rp 8.420.000</strong>
-                                        <div className="landing-progress">
-                                            <span style={{width: "72%"}}/>
-                                        </div>
-                                    </div>
+                                <div className="landing-dashboard-shell">
+                                    <aside className="landing-dashboard-sidebar">
+                                        <span className="is-active"><DashboardOutlined/> Overview</span>
+                                        <span><ShoppingCartOutlined/> Sales</span>
+                                        <span><DatabaseOutlined/> Stock</span>
+                                        <span><BarChartOutlined/> Reports</span>
+                                    </aside>
 
-                                    <div className="landing-stock-panel">
-                                        <div className="landing-panel-heading">
-                                            <StockOutlined/>
-                                            <span>Stok</span>
-                                        </div>
-                                        <div className="landing-stock-bars">
-                                            <span style={{height: "62%"}}/>
-                                            <span style={{height: "84%"}}/>
-                                            <span style={{height: "48%"}}/>
-                                            <span style={{height: "76%"}}/>
-                                            <span style={{height: "58%"}}/>
-                                        </div>
-                                    </div>
+                                    <div className="landing-dashboard-main">
+                                        <div className="landing-dashboard-summary">
+                                            <div className="landing-sale-panel">
+                                                <div className="landing-panel-heading">
+                                                    <ShoppingCartOutlined/>
+                                                    <span>Revenue today</span>
+                                                </div>
+                                                <strong>Rp 8.420.000</strong>
+                                                <div className="landing-progress">
+                                                    <span style={{width: "72%"}}/>
+                                                </div>
+                                            </div>
 
-                                    <div className="landing-role-panel">
-                                        <div className="landing-role-chip">
-                                            <SafetyCertificateOutlined/>
-                                            Super Admin
+                                            <div className="landing-stock-panel">
+                                                <div className="landing-panel-heading">
+                                                    <StockOutlined/>
+                                                    <span>Stock health</span>
+                                                </div>
+                                                <div className="landing-stock-bars">
+                                                    <span style={{height: "62%"}}/>
+                                                    <span style={{height: "84%"}}/>
+                                                    <span style={{height: "48%"}}/>
+                                                    <span style={{height: "76%"}}/>
+                                                    <span style={{height: "58%"}}/>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="landing-role-chip">
-                                            <ShoppingCartOutlined/>
-                                            Kasir
+
+                                        <div className="landing-dashboard-table">
+                                            <div className="landing-table-head">
+                                                <span>Produk</span>
+                                                <span>Stok</span>
+                                                <span>Status</span>
+                                            </div>
+                                            {dashboardRows.map((row) => (
+                                                <div className="landing-table-row" key={row.name}>
+                                                    <span>{row.name}</span>
+                                                    <strong>{row.stock}</strong>
+                                                    <em>{row.status}</em>
+                                                </div>
+                                            ))}
                                         </div>
-                                        <div className="landing-role-chip">
-                                            <DatabaseOutlined/>
-                                            Gudang
+
+                                        <div className="landing-role-panel">
+                                            <div className="landing-role-chip">
+                                                <SafetyCertificateOutlined/>
+                                                Super Admin
+                                            </div>
+                                            <div className="landing-role-chip">
+                                                <ShoppingCartOutlined/>
+                                                Kasir
+                                            </div>
+                                            <div className="landing-role-chip">
+                                                <DatabaseOutlined/>
+                                                Gudang
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -197,20 +229,21 @@ export default function Home() {
                             <div className="landing-hero-copy">
                                 <Space size={[10, 10]} wrap>
                                     <Tag color="success" variant="outlined" icon={<CheckCircleOutlined/>}>
-                                        Sistem POS koperasi
+                                        ERP retail dan koperasi
                                     </Tag>
                                     <Tag color="processing" variant="outlined" icon={<CloudSyncOutlined/>}>
-                                        Dashboard operasional
+                                        Operasional terpusat
                                     </Tag>
                                 </Space>
 
                                 <Title level={1}>
-                                    Kasir, stok, dan laporan dalam satu dashboard yang rapi.
+                                    SatriaPOS ERP untuk operasional yang lebih rapi dan terkendali.
                                 </Title>
 
                                 <Paragraph>
-                                    SatriaPOS membantu toko dan koperasi memproses transaksi lebih cepat,
-                                    menjaga stok tetap terpantau, dan membaca laporan tanpa rekap manual.
+                                    Kenalkan sistem ERP yang menyatukan kasir, gudang, laporan,
+                                    dan akses tim dalam satu dashboard modern untuk toko, koperasi,
+                                    dan unit usaha yang ingin bekerja lebih efisien.
                                 </Paragraph>
 
                                 <div className="landing-hero-actions flex flex-wrap">
@@ -221,7 +254,7 @@ export default function Home() {
                                         icon={<LoginOutlined/>}
                                         className="landing-action-button"
                                     >
-                                        Mulai masuk
+                                        Masuk dashboard
                                     </Button>
                                     <Button
                                         href="#fitur"
@@ -230,14 +263,14 @@ export default function Home() {
                                         iconPlacement="end"
                                         className="landing-action-button"
                                     >
-                                        Lihat fitur
+                                        Jelajahi ERP
                                     </Button>
                                 </div>
 
                                 <div className="landing-hero-checks">
-                                    <span><CheckCircleOutlined/> Role akses jelas</span>
-                                    <span><CheckCircleOutlined/> Tampilan responsif</span>
-                                    <span><CheckCircleOutlined/> Fokus operasional harian</span>
+                                    <span><CheckCircleOutlined/> Data operasional terpadu</span>
+                                    <span><CheckCircleOutlined/> Role akses aman</span>
+                                    <span><CheckCircleOutlined/> Siap dikembangkan multi-cabang</span>
                                 </div>
                             </div>
 
@@ -260,12 +293,12 @@ export default function Home() {
                         <div className="landing-container">
                             <div className="landing-section-heading">
                                 <Tag color="cyan" variant="outlined" icon={<TeamOutlined/>}>
-                                    Solusi per role
+                                    Solusi ERP per role
                                 </Tag>
-                                <Title level={2}>Setiap tim melihat hal yang mereka butuhkan.</Title>
+                                <Title level={2}>Setiap tim bekerja dari informasi yang relevan.</Title>
                                 <Paragraph>
-                                    Tampilan dan tanggung jawab dibagi agar pekerjaan kasir, gudang,
-                                    dan pengelola tidak saling bercampur.
+                                    SatriaPOS ERP memisahkan tanggung jawab operasional agar kasir,
+                                    gudang, dan manajemen dapat bergerak cepat tanpa saling bercampur.
                                 </Paragraph>
                             </div>
 
@@ -300,12 +333,12 @@ export default function Home() {
                         <div className="landing-container">
                             <div className="landing-section-heading">
                                 <Tag color="orange" variant="outlined" icon={<DashboardOutlined/>}>
-                                    Fitur inti
+                                    Fitur ERP inti
                                 </Tag>
-                                <Title level={2}>Dibuat untuk alur kerja harian</Title>
+                                <Title level={2}>Dibuat untuk alur kerja harian yang butuh data akurat.</Title>
                                 <Paragraph>
-                                    Setiap bagian fokus pada pekerjaan yang sering terjadi di meja kasir,
-                                    gudang, dan dashboard pengelola.
+                                    Modul utama dirancang agar transaksi, stok, akses pengguna,
+                                    dan laporan saling tersambung sejak hari pertama digunakan.
                                 </Paragraph>
                             </div>
 
@@ -332,10 +365,10 @@ export default function Home() {
                                 <Tag color="purple" variant="outlined" icon={<AppstoreOutlined/>}>
                                     Modul sistem
                                 </Tag>
-                                <Title level={2}>Komponen inti untuk menjalankan operasional toko.</Title>
+                                <Title level={2}>Fondasi ERP yang siap berkembang bersama bisnis.</Title>
                                 <Paragraph>
-                                    Modul dibuat ringkas agar mudah dikembangkan menjadi fitur produksi,
-                                    pembelian, membership, atau multi-cabang saat dibutuhkan.
+                                    Struktur modul dibuat ringkas, namun tetap siap diperluas ke purchasing,
+                                    membership, produksi, approval, atau multi-cabang saat bisnis bertumbuh.
                                 </Paragraph>
                             </div>
 
@@ -343,7 +376,10 @@ export default function Home() {
                                 {modules.map((module) => (
                                     <div className="landing-module-item" key={module.label}>
                                         {module.icon}
-                                        <Text className="landing-module-label">{module.label}</Text>
+                                        <div>
+                                            <Text className="landing-module-label">{module.label}</Text>
+                                            <Text className="landing-module-description">{module.description}</Text>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -356,10 +392,10 @@ export default function Home() {
                                 <Tag color="cyan" variant="outlined" icon={<CloudSyncOutlined/>}>
                                     Alur operasional
                                 </Tag>
-                                <Title level={2}>Dari stok masuk sampai laporan selesai.</Title>
+                                <Title level={2}>Dari data produk sampai keputusan manajemen.</Title>
                                 <Paragraph>
-                                    SatriaPOS menyatukan data transaksi dan gudang agar setiap keputusan
-                                    tidak lagi bergantung pada catatan terpisah.
+                                    Setiap aktivitas masuk ke alur data yang sama, sehingga laporan
+                                    dan keputusan harian tidak lagi bergantung pada catatan terpisah.
                                 </Paragraph>
                             </div>
 
@@ -382,10 +418,10 @@ export default function Home() {
                                         <Tag color="green" variant="outlined" icon={<SafetyCertificateOutlined/>}>
                                             Role based access
                                         </Tag>
-                                        <Title level={2}>Akses tim tetap terkontrol.</Title>
+                                        <Title level={2}>Bangun ERP internal dengan akses yang terkontrol.</Title>
                                         <Paragraph>
-                                            Pisahkan hak akses super admin, kasir, dan admin gudang agar pekerjaan
-                                            harian lebih aman dan data tetap sesuai tanggung jawab.
+                                            Pisahkan hak akses super admin, kasir, dan admin gudang agar
+                                            pekerjaan harian lebih aman, rapi, dan siap diaudit.
                                         </Paragraph>
                                     </div>
 
@@ -409,11 +445,11 @@ export default function Home() {
                         <div className="landing-footer-brand">
                             <a className="landing-brand" href="/" aria-label="SatriaPOS">
                                 <img src="/images/logo-satria.png" alt="SatriaPOS"/>
-                                <span>Satria<span>POS</span></span>
+                                <span>Satria<span>POS ERP</span></span>
                             </a>
                             <Paragraph>
-                                Point of sale modern untuk koperasi, toko, dan unit usaha yang butuh
-                                transaksi cepat serta stok yang mudah dipantau.
+                                ERP modern untuk koperasi, toko, dan unit usaha yang butuh
+                                transaksi cepat, stok akurat, dan laporan yang mudah dibaca.
                             </Paragraph>
                         </div>
 
@@ -429,7 +465,7 @@ export default function Home() {
 
                     <div className="landing-container landing-footer-bottom">
                         <Text>SatriaPOS by SatriaCorp</Text>
-                        <Text>Designed for koperasi operations</Text>
+                        <Text>Designed for ERP operations</Text>
                     </div>
                 </Footer>
             </Layout>
