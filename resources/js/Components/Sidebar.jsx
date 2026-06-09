@@ -1,9 +1,9 @@
 import {Image, Layout, Menu} from 'antd';
-import {UploadOutlined, UserOutlined, VideoCameraOutlined} from "@ant-design/icons";
-import {theme} from "../theme.js";
+import {usePage} from "@inertiajs/react";
 
 const {Sider} = Layout;
 export const Sidebar = ({collapsed,menuItems  }) => {
+    const {url} = usePage();
 
     return (
         <Sider
@@ -44,7 +44,7 @@ export const Sidebar = ({collapsed,menuItems  }) => {
             <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={['1']}
+                selectedKeys={[url]}
                 style={{
                     background: '#0b0b0b',
                     borderInlineEnd: 'none',

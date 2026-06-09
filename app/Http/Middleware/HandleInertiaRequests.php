@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -35,9 +37,30 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $user = $request->user();
+
         return [
             ...parent::share($request),
-            //
+            "auth" => [
+                "id" => $user?->id,
+                "profile" => $this->resolveProfilePhotoUrl($user?->profile_photo),
+                "name" => $user?->name,
+                "email" => $user?->email,
+                "role" => $user?->role,
+            ]
         ];
+    }
+
+    private function resolveProfilePhotoUrl(?string $profilePhoto): ?string
+    {
+        if ($profilePhoto === null || $profilePhoto === '') {
+            return null;
+        }
+
+        if (Str::startsWith($profilePhoto, ['http://', 'https://', '/storage/'])) {
+            return $profilePhoto;
+        }
+
+        return Storage::disk('public')->url($profilePhoto);
     }
 }

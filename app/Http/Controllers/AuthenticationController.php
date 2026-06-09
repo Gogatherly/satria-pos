@@ -28,4 +28,9 @@ class AuthenticationController extends Controller
             ->withErrors(['email' => 'Email atau password tidak valid.'])
             ->onlyInput('email');
     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
+    }
 }

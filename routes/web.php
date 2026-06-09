@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\SuperAdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,6 +24,9 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
         Route::get("/",function (Request $request){
             return Inertia::render('SuperAdmin/Home');
         });
+
+        Route::get("/profile",[SuperAdminController::class,'profile'])->name('super-admin.profile');
+        Route::patch("/profile",[SuperAdminController::class,'updateProfile'])->name('super-admin.profile.update');
     });
 
 //    Kasir

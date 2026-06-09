@@ -1,41 +1,64 @@
-import {DownOutlined, MenuFoldOutlined, MenuUnfoldOutlined, SmileOutlined, UserOutlined} from "@ant-design/icons";
-import {Avatar, Button, Dropdown, Layout, Space} from 'antd';
+import {
+    LoginOutlined,
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+    SettingOutlined,
+    UserOutlined
+} from "@ant-design/icons";
+import {Avatar, Button, Dropdown, Layout} from 'antd';
+import {Link, usePage} from "@inertiajs/react";
 const { Header } = Layout;
 
 export const Navbar = ({setCollapsed, collapsed}) => {
+    const {auth} = usePage().props;
+
+    function getLinkProfile() {
+        const role = auth?.role;
+
+        if (role === "super_admin") {
+            return "/super-admin/profile";
+        }
+
+        return null;
+    }
+
+    const profileLink = getLinkProfile();
+
     const items = [
         {
             key: '1',
-            label: (
-                <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-                    1st menu item
-                </a>
-            ),
+            label: auth?.name ?? 'User',
         },
         {
+            type: "divider"
+        },
+        profileLink && {
             key: '2',
             label: (
-                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-                    2nd menu item (disabled)
-                </a>
+                <Link href={profileLink} className="block w-full">
+                    Profile
+                </Link>
             ),
-            icon: <SmileOutlined />,
-            disabled: true,
+            icon: <UserOutlined/>
         },
         {
             key: '3',
-            label: (
-                <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-                    3rd menu item (disabled)
-                </a>
-            ),
+            label: 'Settings',
+            icon: <SettingOutlined />,
             disabled: true,
         },
         {
             key: '4',
-            danger: true,
-            label: 'a danger item',
-        }];
+            label: (
+                <Link href="/logout" method="post" as="button" className="block w-full text-left">
+                    Logout
+                </Link>
+            ),
+            icon: <LoginOutlined />,
+            danger: true
+        }
+    ].filter(Boolean);
+
     return (
         <Header
             style={{
@@ -59,8 +82,10 @@ export const Navbar = ({setCollapsed, collapsed}) => {
                 }}
             />
             <div className="flex w-full items-center justify-end pr-8">
-                <Dropdown trigger={"click"} menu={{ items }}>
-                    <Avatar size={40} icon={<UserOutlined />} />
+                <Dropdown trigger={["click"]} menu={{ items }}>
+                    <button type="button" className="cursor-pointer border-0 bg-transparent p-0">
+                        {auth?.profile ? <Avatar size={40} src={auth.profile} /> : <Avatar size={40} icon={<UserOutlined />} />}
+                    </button>
                 </Dropdown>
             </div>
         </Header>

@@ -1,17 +1,23 @@
 import {Layout} from "antd";
 import {useState} from "react";
+import {Link} from "@inertiajs/react";
+import {HomeOutlined, UserOutlined} from "@ant-design/icons";
 import {Sidebar} from "../Components/Sidebar.jsx";
 import {Navbar} from "../Components/Navbar.jsx";
 import {ContentLayout} from "../Components/ContentLayout.jsx";
-import {HomeOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined} from "@ant-design/icons";
 
 export const LayoutSuperAdmin = ({children}) => {
     const [collapse, setCollapsed] = useState(false);
     const menuItems = [
         {
-            key: '1',
-            icon: <HomeOutlined />,
-            label: 'nav 1',
+            key: '/super-admin',
+            icon: <HomeOutlined/>,
+            label: <Link href="/super-admin">Dashboard</Link>,
+        },
+        {
+            key: '/super-admin/profile',
+            icon: <UserOutlined/>,
+            label: <Link href="/super-admin/profile">Profile</Link>,
         },
     ];
     return (
