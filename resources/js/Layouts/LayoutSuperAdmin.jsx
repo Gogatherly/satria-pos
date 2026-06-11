@@ -1,7 +1,7 @@
 import {Layout} from "antd";
 import {useState} from "react";
 import {Link} from "@inertiajs/react";
-import {HomeOutlined, UserOutlined} from "@ant-design/icons";
+import {HomeOutlined, ShopOutlined, UserOutlined} from "@ant-design/icons";
 import {Sidebar} from "../Components/Sidebar.jsx";
 import {Navbar} from "../Components/Navbar.jsx";
 import {ContentLayout} from "../Components/ContentLayout.jsx";
@@ -18,6 +18,11 @@ export const LayoutSuperAdmin = ({children}) => {
             key: '/super-admin/profile',
             icon: <UserOutlined/>,
             label: <Link href="/super-admin/profile">Profile</Link>,
+        },
+        {
+            key: '/suplier',
+            icon: <ShopOutlined/>,
+            label: <Link href="/suplier">Suplier</Link>,
         },
     ];
     return (

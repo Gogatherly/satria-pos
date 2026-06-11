@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\SuplierController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,7 +19,6 @@ Route::get('/', function () {
 Route::middleware(['auth', 'auth.session'])->group(function () {
     Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
-//    Super Admin
 
     Route::middleware("super-admin")->prefix('super-admin')->group(function () {
         Route::get("/",function (Request $request){
@@ -29,7 +29,14 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
         Route::patch("/profile",[SuperAdminController::class,'updateProfile'])->name('super-admin.profile.update');
     });
 
-//    Kasir
+    Route::middleware('role:super_admin,admin_gudang')->group(function () {
+        Route::get('/suplier', [SuplierController::class, 'index'])->name('suplier.index');
+        Route::post('/suplier', [SuplierController::class, 'store'])->name('suplier.store');
+        Route::delete('/suplier', [SuplierController::class, 'destroyBulk'])->name('suplier.destroy.bulk');
+        Route::patch('/suplier/{suplier}', [SuplierController::class, 'update'])->name('suplier.update');
+        Route::delete('/suplier/{suplier}', [SuplierController::class, 'destroy'])->name('suplier.destroy');
+    });
+
     Route::middleware("kasir")->prefix("kasir")->group(function () {
         Route::get("/",function (Request $request){
             return Inertia::render('Kasir/Home');
